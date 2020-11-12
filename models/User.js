@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
   steam: String,
   twitch: String,
   quickbooks: String,
+  zoom: String,
   tokens: Array,
 
   profile: {

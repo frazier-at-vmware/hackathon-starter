@@ -11,6 +11,7 @@ const { Strategy: GitHubStrategy } = require('passport-github2');
 const { OAuth2Strategy: GoogleStrategy } = require('passport-google-oauth');
 const { Strategy: LinkedInStrategy } = require('passport-linkedin-oauth2');
 const { Strategy: OpenIDStrategy } = require('passport-openid');
+const { Strategy: ZoomStrategy } = require('@giorgosavgeris/passport-zoom-oauth2');
 const { OAuthStrategy } = require('passport-oauth');
 const { OAuth2Strategy } = require('passport-oauth');
 const _ = require('lodash');
@@ -64,6 +65,19 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, don
  *       - If there is, return an error message.
  *       - Else create a new account.
  */
+
+ /** Sign in to Zoom Account */
+ passport.use(new ZoomStrategy({
+  clientID: process.env.ZOOM_CLIENT_ID,
+  clientSecret: process.env.ZOOM_CLIENT_SECRET,
+  callbackURL: process.env.ZOOM_URL
+},
+function(accessToken, refreshToken, profile, done) {
+  User.findOrCreate(function (err, user) {
+    done(err, user);
+  });
+}
+));
 
 /**
  * Sign in with Snapchat.

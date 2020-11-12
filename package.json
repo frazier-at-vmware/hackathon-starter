@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
+    "@giorgosavgeris/passport-zoom-oauth2": "^1.1.0",
     "@ladjs/bootstrap-social": "^7.0.2",
     "@octokit/rest": "^18.0.6",
     "axios": "^0.20.0",
